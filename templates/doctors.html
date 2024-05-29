@@ -1,0 +1,73 @@
+{% extends "index2.html" %}
+
+{% block Home %}
+    Doctor
+{% endblock Home %}
+{% block css %}
+<style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10vh;
+    }
+    .btn-big {
+      font-size: 22px;
+      padding: 10px 20px;
+      margin: 10px;
+    }
+    </style>
+{% endblock css %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+<div class="container">
+    <div id="mainOptions">
+      <a href="/addDoctors" class="btn btn-primary btn-big" >Add a new doctor</a>
+      <a href="/admin" class="btn btn-primary btn-big" >Go to admin page</a>
+    </div> 
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">DoctorID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Department</th>
+        <th scope="col">Time Slot</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in doct %}
+      <tr>
+        <th scope="row">{{d.did}}</th>
+        <th>{{d.name}}</th>
+        <td>{{d.email}}</td>
+        <td>{{d.dept}}</td>
+        <td>{{d.slot}}</td>
+        <td><a href="/edit/{{d.did}}"><button class="btn btn-primary">Update </button> </a> </td>
+        <td><a href="/delete/{{d.did}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-danger">Delete </button> </a> </td>
+        <td><a href="/addLeave/{{d.did}}"><button class="btn btn-danger">Add Leave</button> </a> </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock body %}

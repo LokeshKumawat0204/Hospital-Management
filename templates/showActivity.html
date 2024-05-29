@@ -1,0 +1,71 @@
+{% extends "index2.html" %}
+
+{% block Home %}
+    Patients Activity
+{% endblock Home %}
+{% block css %}
+<style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 12vh;
+    }
+    .btn-big {
+      font-size: 22px;
+      padding: 10px 20px;
+      margin: 10px;
+    }
+    </style>
+{% endblock css %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">SNo.</th>
+        <th scope="col">AptID</th>
+        <th scope="col">Patient's Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">TimeStamp</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in patient %}
+      <tr>
+        <th scope="row">{{d.id}}</th>
+        <td>{{d.Aptid}}</td>
+        <th>{{d.name}}</th>
+        <td>{{d.email}}</td>
+        <td>{{d.time}}</td>
+        <td>{{d.operation}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="container">
+    <div id="mainOptions">
+      <a href="/admin" class="btn btn-primary btn-big" >Go to home page</a>
+    </div> 
+</div>
+{% endblock body %}

@@ -1,0 +1,81 @@
+{% extends 'index2.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<div class="container mt-3">
+
+<div class="row">
+
+
+    <div class="col-md-4">
+
+    </div>
+    
+
+<div class="col-md-4">
+<form action="/login" method="post">
+
+ 
+
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <br>
+  <div class="mb-4">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="patientRadio" value="patient" required>
+        <label class="form-check-label" for="patientRadio">Patient</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="adminRadio" value="admin" required>
+        <label class="form-check-label" for="adminRadio">Admin</label>
+    </div>
+  </div>
+<br>
+  <button type="submit" class="btn btn-success btn-sm btn-block">Login</button>
+</form>
+
+<br>
+Not a User <a href="/signup">Signup</a>
+
+<br>
+</div>
+
+<div class="col-md-4">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+{% endblock body %}

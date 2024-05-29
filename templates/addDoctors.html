@@ -1,0 +1,90 @@
+{% extends "index2.html" %} 
+
+{% block title %} Add Doctor {% endblock title %}
+
+{% block css %} 
+
+<style>
+    .divider::after,
+    .divider::before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+
+    .h-custom {
+      height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100%;
+      }
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<div class="container">
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form  action="addDoctors"  method="post" >
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center  mx-3 mb-0 display-6">Add a new Doctor</p>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" class="form-control form-control-lg" name="email">
+                            <label for="email">Email Address</label>
+                        </div>
+
+                        <!-- name input -->
+                        <div class="form-floating mb-3">
+                            <input type="text" id="name" class="form-control form-control-lg" name="name">
+                            <label for="name"> Name</label>
+                        </div>
+                       
+                        <div class="form-floating mb-3">
+                        <select class="form-select" required  id="slot" name="slot" >
+                
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                            <option value="Night">Night</option>
+                          </select>
+                          <label for="slot">Slot </label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" id="dept" class="form-control form-control-lg" name="dept">
+                            <label for="dept"> Department</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-outline-info btn-lg">Add Doctor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock body %}

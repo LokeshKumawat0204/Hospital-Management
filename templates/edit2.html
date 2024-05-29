@@ -1,0 +1,75 @@
+{% extends "index2.html" %} 
+
+{% block title %} Update Doctor {% endblock title %}
+
+{% block css %} 
+
+<style>
+    .divider::after,
+    .divider::before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+
+    .h-custom {
+      height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100%;
+      }
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+        
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form  action="/edit/{{posts.did}}"  method="post" >
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center  mx-3 mb-0 display-6">Update Doctor details</p>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" class="form-control form-control-lg"  value={{posts.email}}  name="email">
+                            <label for="email">Email Address</label>
+                        </div>
+
+                        <!-- name input -->
+                        <div class="form-floating mb-3">
+                            <input type="text" id="name" class="form-control form-control-lg" name="name" required value="{{posts.name}}">
+                            <label for="name"> Name</label>
+                        </div>
+                       
+                        <div class="form-floating mb-3">
+                        <select class="form-select" required  id="slot" name="slot" >
+                            <option selected>{{posts.slot}} </option>
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                            <option value="Night">Night</option>
+                          </select>
+                          <label for="slot">Slot </label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" id="dept" class="form-control form-control-lg" name="dept" required value="{{posts.dept}}">
+                            <label for="dept"> Department</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-outline-info btn-lg">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock body %}
